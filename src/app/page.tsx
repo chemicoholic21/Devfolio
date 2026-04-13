@@ -9,129 +9,160 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   // Section refs for GSAP animations
+  const containerRef = useRef<HTMLDivElement>(null);
   const aboutSectionRef = useRef<HTMLDivElement>(null);
   const nameSectionRef = useRef<HTMLDivElement>(null);
   const socialEmailLinkRef = useRef<HTMLAnchorElement>(null);
   const socialLinksRef = useRef<HTMLDivElement>(null);
+  
   const skillSectionRef1 = useRef<HTMLDivElement>(null);
   const skillSectionRef2 = useRef<HTMLDivElement>(null);
   const skillSectionRef3 = useRef<HTMLDivElement>(null);
   const skillSectionRefs = useMemo(() => [skillSectionRef1, skillSectionRef2, skillSectionRef3], []);
+  
   const experienceRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
+  const projectsContainerRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // About section
-    if (aboutSectionRef.current) {
-      gsap.fromTo(
-        aboutSectionRef.current,
-        { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, ease: "power2.out", duration: 0.6 }
+    let ctx = gsap.context(() => {
+      // 1. Initial Page Load Reveal (Hero)
+      const tl = gsap.timeline();
+      tl.fromTo(
+        [aboutSectionRef.current, nameSectionRef.current],
+        { opacity: 0, y: 80, scale: 0.95, filter: "blur(10px)" },
+        { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1, 
+          filter: "blur(0px)",
+          duration: 1.5, 
+          ease: "expo.out", 
+          stagger: 0.2 
+        }
       );
-    }
-    if (nameSectionRef.current) {
-      gsap.fromTo(
-        nameSectionRef.current,
-        { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, ease: "power2.out", duration: 0.6 }
+
+      // Social links magnetic-like enter
+      tl.fromTo(
+        ".socialLink",
+        { opacity: 0, y: 40, rotation: 5 },
+        { opacity: 1, y: 0, rotation: 0, duration: 1, ease: "power4.out", stagger: 0.1 },
+        "-=1.2"
       );
-    }
-    // Socials
-    if (socialEmailLinkRef.current) {
-      gsap.fromTo(
-        socialEmailLinkRef.current,
-        { opacity: 0, x: -100 },
-        { opacity: 1, x: 0, ease: "power2.out", duration: 1 }
-      );
-    }
-    if (socialLinksRef.current) {
-      gsap.fromTo(
-        socialLinksRef.current.querySelectorAll(".socialLink"),
-        { opacity: 0, x: 100 },
-        { opacity: 1, x: 0, ease: "power2.out", duration: 1, stagger: 0.1 }
-      );
-    }
-    // Skills
-    skillSectionRefs.forEach((ref) => {
-      if (ref.current) {
+
+      // 2. Scrub Parallax for Skills
+      skillSectionRefs.forEach((ref) => {
+        if (ref.current) {
+          gsap.fromTo(
+            ref.current,
+            { opacity: 0.2, y: 150, scale: 0.95, rotationX: 10 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              rotationX: 0,
+              ease: "expo.out",
+              scrollTrigger: {
+                trigger: ref.current,
+                start: "top 95%",
+                end: "top 60%",
+                scrub: 1.5,
+              },
+            }
+          );
+        }
+      });
+
+      // 3. Staggered Experience Cards with Clip Path Reveal
+      if (experienceRef.current) {
+        const experienceItems = experienceRef.current.querySelectorAll('.companyBox, .experienceItem');
         gsap.fromTo(
-          ref.current,
-          { opacity: 0, y: 100 },
+          experienceItems,
+          { opacity: 0, y: 100, clipPath: "inset(100% 0% 0% 0%)" },
           {
             opacity: 1,
             y: 0,
-            ease: "power.out",
-            duration: 1,
+            clipPath: "inset(0% 0% 0% 0%)",
+            stagger: 0.1,
+            ease: "power4.out",
             scrollTrigger: {
-              trigger: ref.current,
-              start: "0% 84%",
-              end: "10% 70%",
+              trigger: experienceRef.current,
+              start: "top 85%",
+              end: "top 40%",
+              scrub: 1,
             },
           }
         );
       }
-    });
-    // Experience
-    if (experienceRef.current) {
-      gsap.fromTo(
-        experienceRef.current,
-        { opacity: 0, y: 100 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power.out",
-          duration: 2,
-          scrollTrigger: {
-            trigger: experienceRef.current,
-            start: "10% 80%",
-            end: "50% 70%",
-          },
-        }
-      );
-    }
-    // Projects
-    if (projectsRef.current) {
-      gsap.fromTo(
-        projectsRef.current,
-        { opacity: 0, y: 100 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power.out",
-          duration: 2,
-          scrollTrigger: {
-            trigger: projectsRef.current,
-            start: "10% 80%",
-            end: "50% 70%",
-          },
-        }
-      );
-    }
-    // Contact
-    if (contactRef.current) {
-      gsap.fromTo(
-        contactRef.current,
-        { opacity: 0, y: 100 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power.out",
-          duration: 1,
-          scrollTrigger: {
-            trigger: contactRef.current,
-            start: "0% 80%",
-            end: "50% 70%",
-          },
-        }
-      );
-    }
+
+      // 4. Oryzo-like Parallax Projects Cards
+      if (projectsContainerRef.current) {
+        const projects = projectsContainerRef.current.querySelectorAll('.projects');
+        projects.forEach((proj, i) => {
+          const img = proj.querySelector('.projectImg');
+          
+          // Outer card smooth entry
+          gsap.fromTo(proj,
+            { opacity: 0, y: 200, scale: 0.9 },
+            {
+              opacity: 1, y: 0, scale: 1, 
+              ease: "expo.out",
+              scrollTrigger: {
+                trigger: proj,
+                start: "top 90%",
+                end: "top 50%",
+                scrub: 1.2
+              }
+            }
+          );
+
+          // Inner image slight un-zooming parallax effect
+          if (img) {
+            gsap.fromTo(img,
+              { scale: 1.2, rotation: 1 },
+              {
+                scale: 1, rotation: 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: proj,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true
+                }
+              }
+            );
+          }
+        });
+      }
+
+      // 5. Contact Section Dramatic Reveal
+      if (contactRef.current) {
+        gsap.fromTo(
+          contactRef.current,
+          { opacity: 0, y: 200, scale: 0.8 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: contactRef.current,
+              start: "top 95%",
+              end: "center 70%",
+              scrub: 1.5,
+            },
+          }
+        );
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
   }, [skillSectionRefs]);
 
   return (
-    <div className="container">
+    <div className="container" ref={containerRef}>
       <div className="navbar">
-        <div className="nameLink">Portfolio</div>
+        <div className="nameLink">TANIYA SOUZA ©</div>
         <div className="pageLinks">
           <a href="#skills">skills</a>
           <a href="#experience">experience</a>
@@ -142,7 +173,7 @@ export default function Home() {
 
       <div className="about">
         <div className="aboutSection" ref={aboutSectionRef}>
-          <Image className="myPic" alt="photo" src="/myPic.png" width={280} height={280} />
+          <Image className="myPic" alt="Taniya Souza" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" width={400} height={400} />
           <div className="fieldSection">
             <div>Taniya Souza</div>
             <div className="fieldName">Software engineer</div>
@@ -151,13 +182,13 @@ export default function Home() {
         <div className="nameSection" ref={nameSectionRef}>
           <div className="aboutHeading">ABOUT</div>
           <span>
-            Frontend Engineer and AI Product Builder with experience across TypeScript, React, and Python. Currently building GitPullTalent — a GitHub-based developer ranking and discovery platform. I've worked across AI product engineering, design systems, and full-stack development at Series-A startups and design consultancies.
+            More into logic, systems, and backend than just UI. I build full-stack products using React, TypeScript, and Python, and spend a lot of time working on APIs, data flow, and AI-driven features. Currently building something on Github, you can check it!
           </span>
         </div>
       </div>
 
       <div className="socials" ref={socialLinksRef}>
-        <a className="socialEmailLink" ref={socialEmailLinkRef} href="mailto:taniyasouza@gmail.com">email.</a>
+        <a className="socialLink socialEmailLink" ref={socialEmailLinkRef} href="mailto:taniyasouza@gmail.com">email.</a>
         <a className="socialLink" href="/Taniya_Souza_.pdf" download>resume.</a>
         <a className="socialLink" href="https://www.linkedin.com/in/taniya-souza-284167203/" target="_blank" rel="noopener noreferrer">linkedIn.</a>
         <a className="socialLink" href="https://github.com/chemicoholic21" target="_blank" rel="noopener noreferrer">github.</a>
@@ -206,7 +237,7 @@ export default function Home() {
       <div className="experience" id="experience" ref={experienceRef}>
         <div className="experienceheading">EXPERIENCE</div>
         <div className="companyBox">
-          <div className="companyName">AI Foundations School</div>
+          <div className="companyName">AI Foundations</div>
           <div className="companyPeriod">March 2026 – Present</div>
           <div className="companySkills">
             <div className="companySkillName">TypeScript</div>
@@ -215,7 +246,7 @@ export default function Home() {
           </div>
         </div>
         <div className="experienceItem">
-          <div className="experienceName">Frontend Engineer (TypeScript, Performance & API Integration), Remote</div>
+          <div className="experienceName">Frontend Engineer (TypeScript, Performance & API Integration)</div>
           <div className="experienceDesc">
           Building GitPullTalent: a GitHub-based developer ranking and discovery platform. Designed a scoring system evaluating developers on commits, pull requests, and repo quality for recruiter-focused signals. Handled large-scale data ingestion, ranking logic, and profile prioritization heuristics.
           </div>
@@ -250,168 +281,142 @@ export default function Home() {
           </div>
         </div>
         <div className="companyBox">
-          <div className="companyName">frog by Capgemini Invent</div>
+          <div className="companyName">frog by Capgemini</div>
           <div className="companyPeriod">January 2025 - June 2025</div>
           <div className="companySkills">
             <div className="companySkillName">ReactJS</div>
-            <div className="companySkillName">TScript</div>
+            <div className="companySkillName">TypeScript</div>
             <div className="companySkillName">Next.js</div>
           </div>
         </div>
         <div className="experienceItem">
           <div className="experienceName">Frontend / Design technologist</div>
           <div className="experienceDesc">
-          • Automated insurance policy verification using n8n and DeepOpinion.
-          <br />
-• built reusable, accessible UI components with React, TypeScript, Tailwind, and Storybook.
-<br />
-• delivered a full-stack journaling app with Supabase, Typescript, Tailwind css and Next Js.
-<br />
-• enforced coding standards via ESLint/Husky, followed atomic design, and collaborated through
-GitHub and CI.
-<br />
-• Delivered a full-stack web application using Next.js, TypeScript, Supabase, and REST APIs.
+          Automated insurance policy verification using n8n and DeepOpinion. Built reusable, accessible UI components with React, TypeScript, Tailwind, and Storybook. Delivered a full-stack journaling app with Supabase and enforced coding standards via ESLint/Husky.
           </div>
         </div>
       </div>
 
-      <div className="projects" id="projects" ref={projectsRef}>
-        <div className="projectHeader">
-          <div>
-            <div className="aboutHeading">PROJECTS</div>
-            <div className="projectName">GitPullTalent</div>
-            <div className="projectDesc">
-              A GitHub-based developer ranking and discovery platform. Scores developers on real activity like commits, PRs, and repo quality to surface meaningful signals for recruiters. Built with TypeScript.
+      <div id="projects" ref={projectsContainerRef} style={{ display: 'flex', flexDirection: 'column', gap: '6vw' }}>
+        <div className="projects">
+          <div className="projectHeader">
+            <div>
+              <div className="aboutHeading">PROJECTS</div>
+              <div className="projectName">GitPullTalent</div>
+              <div className="projectDesc">
+                A GitHub-based developer ranking and discovery platform. Scores developers on real activity like commits, PRs, and repo quality to surface meaningful signals for recruiters. Built with TypeScript.
+              </div>
             </div>
+            <a href="https://github.com/chemicoholic21/Git-Pull-Talent" target="_blank" rel="noopener noreferrer">
+              <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+            </a>
           </div>
-          <a href="https://github.com/chemicoholic21/Git-Pull-Talent" target="_blank" rel="noopener noreferrer">
-            <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+          <a href="https://gitpulltalent.vercel.app" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <Image className="projectImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600" alt="GitPullTalent" width={1600} height={900} />
           </a>
         </div>
-        <a href="https://gitpulltalent.vercel.app" target="_blank" rel="noopener noreferrer">
-          <Image className="projectImg" src="/mockup1.png" alt="GitPullTalent" width={800} height={400} />
-        </a>
-      </div>
 
-      <div className="projects">
-        <div className="projectHeader">
-          <div>
-            <div className="projectName">github-data-pipeline</div>
-            <div className="projectDesc">
-              A headless data pipeline that ingests, caches, and analyzes GitHub data, storing structured insights in Postgres and Redis. Built with TypeScript, BullMQ, Drizzle ORM.
+        <div className="projects">
+          <div className="projectHeader">
+            <div>
+              <div className="projectName">github-data-pipeline</div>
+              <div className="projectDesc">
+                A headless data pipeline that ingests, caches, and analyzes GitHub data, storing structured insights in Postgres and Redis. Built with TypeScript, BullMQ, Drizzle ORM.
+              </div>
             </div>
+            <a href="https://github.com/chemicoholic21/github-data-pipeline" target="_blank" rel="noopener noreferrer">
+              <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+            </a>
           </div>
-          <a href="https://github.com/chemicoholic21/github-data-pipeline" target="_blank" rel="noopener noreferrer">
-            <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+          <a href="https://github.com/chemicoholic21/github-data-pipeline" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <Image className="projectImg" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600" alt="github-data-pipeline" width={1600} height={900} />
           </a>
         </div>
-        <a href="https://github.com/chemicoholic21/github-data-pipeline" target="_blank" rel="noopener noreferrer">
-          <Image className="projectImg" src="/mockup1.png" alt="github-data-pipeline" width={800} height={400} />
-        </a>
-      </div>
 
-      <div className="projects">
-        <div className="projectHeader">
-          <div>
-            <div className="projectName">Fitness App</div>
-            <div className="projectDesc">
-              Real-time posture/movement monitoring web app using OpenCV. Python backend, React frontend, hosted on AWS.
+        <div className="projects">
+          <div className="projectHeader">
+            <div>
+              <div className="projectName">Fitness App</div>
+              <div className="projectDesc">
+                Real-time posture/movement monitoring web app using OpenCV. Python backend, React frontend, hosted on AWS.
+              </div>
             </div>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+            </a>
           </div>
-          <a href="#" target="_blank" rel="noopener noreferrer">
-            <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+          <a href="#" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <Image className="projectImg" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1600" alt="Fitness App" width={1600} height={900} />
           </a>
         </div>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <Image className="projectImg" src="/mockup1.png" alt="Fitness App" width={800} height={400} />
-        </a>
-      </div>
 
-      <div className="projects">
-        <div className="projectHeader">
-          <div>
-            <div className="projectName">JournalMind</div>
-            <div className="projectDesc">
-              Journaling application built with Next.js, TypeScript, and Tailwind CSS.
-              It allows users to create, edit, and delete journal entries, with a focus on
-              user-friendly design and responsive layout. The app features a clean interface,
-              ensuring a seamless experience across devices. It utilizes Next.js for server-side rendering,
-              enhancing performance and SEO. The project showcases proficiency in modern web development
-              technologies and a commitment to delivering high-quality, maintainable code.
+        <div className="projects">
+          <div className="projectHeader">
+            <div>
+              <div className="projectName">JournalMind</div>
+              <div className="projectDesc">
+                Journaling application built with Next.js, TypeScript, and Tailwind CSS. Seamless user experience and robust design layout leveraging SSR.
+              </div>
             </div>
+            <a href="https://github.com/tsouza1007/JM" target="_blank" rel="noopener noreferrer">
+              <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+            </a>
           </div>
-          <a href="https://github.com/tsouza1007/JM" target="_blank" rel="noopener noreferrer">
-            <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+          <a href="https://github.com/tsouza1007/JM" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <Image className="projectImg" src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1600" alt="JournalMind" width={1600} height={900} />
           </a>
         </div>
-        <a href="https://github.com/tsouza1007/JM" target="_blank" rel="noopener noreferrer">
-          <Image className="projectImg" src="/mockup3.png" alt="Book shop" width={800} height={400} />
-        </a>
-      </div>
 
-      <div className="projects">
-        <div className="projectHeader">
-          <div>
-            <div className="projectName">Image Processing using Groudning Dino, SAM and SD-XL</div>
-            <div className="projectDesc">
-              This project demonstrates advanced image processing techniques using
-              Grounding DINO for object detection, SAM (Segment Anything Model) for
-              segmentation, and SD-XL (Stable Diffusion XL) for image generation.
-              It showcases the integration of these models to create a comprehensive
-              pipeline for analyzing and generating images, highlighting the capabilities
-              of modern AI in computer vision tasks.
+        <div className="projects">
+          <div className="projectHeader">
+            <div>
+              <div className="projectName">Image Processing AI</div>
+              <div className="projectDesc">
+                Advanced image processing pipeline using Grounding DINO for object detection, SAM for segmentation, and SD-XL for image generation.
+              </div>
             </div>
+            <a href="https://colab.research.google.com/drive/1YGKV5TSSjF9UAfWZiulkk8t1GDxN6ysD" target="_blank" rel="noopener noreferrer">
+              <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+            </a>
           </div>
-          <a href="https://colab.research.google.com/drive/1YGKV5TSSjF9UAfWZiulkk8t1GDxN6ysD#scrollTo=wz7jaj02TnKi" target="_blank" rel="noopener noreferrer">
-            <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+          <a href="https://colab.research.google.com/drive/1YGKV5TSSjF9UAfWZiulkk8t1GDxN6ysD" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <Image className="projectImg" src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1600" alt="AI PIPELINE" width={1600} height={900} />
           </a>
         </div>
-        <a href="https://colab.research.google.com/drive/1YGKV5TSSjF9UAfWZiulkk8t1GDxN6ysD#scrollTo=wz7jaj02TnKi" target="_blank" rel="noopener noreferrer">
-          <Image className="projectImg" src="/mockup1.png" alt="Book shop" width={800} height={400} />
-        </a>
-      </div>
 
-      <div className="projects">
-        <div className="projectHeader">
-          <div>
-            <div className="projectName">Positivus</div>
-            <div className="projectDesc">
-              Responsive website with microanimations and smooth transitions,
-              built using ReactJS and Tailwind CSS. The project showcases 
-              advanced CSS techniques, including hover effects and animations,
-              to create an engaging user experience. It features a modern design
-              with a focus on usability and aesthetics, ensuring compatibility
-              across various devices and screen sizes.
+        <div className="projects">
+          <div className="projectHeader">
+            <div>
+              <div className="projectName">Positivus</div>
+              <div className="projectDesc">
+                Responsive website with microanimations and smooth transitions, built using ReactJS and Tailwind CSS.
+              </div>
             </div>
+            <a href="https://github.com/tsouza1007/Hackathon" target="_blank" rel="noopener noreferrer">
+              <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+            </a>
           </div>
-          <a href="https://github.com/tsouza1007/Hackathon" target="_blank" rel="noopener noreferrer">
-            <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+          <a href="https://github.com/tsouza1007/Hackathon" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <Image className="projectImg" src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=1600" alt="Positivus" width={1600} height={900} />
           </a>
         </div>
-        <a href="https://github.com/tsouza1007/Hackathon" target="_blank" rel="noopener noreferrer">
-          <Image className="projectImg" src="/mockup1.png" alt="Book shop" width={800} height={400} />
-        </a>
-      </div>
 
-      <div className="projects">
-        <div className="projectHeader">
-          <div>
-            <div className="projectName">Travel Planner</div>
-            <div className="projectDesc">
-              A travel planning application that allows users to create and manage their travel itineraries.
-              It features a user-friendly interface for adding destinations, activities, and accommodations,
-              with options to customize trip details. The app integrates with external APIs for real-time
-              information on flights, weather, and local attractions, providing a comprehensive travel planning
-              experience.
+        <div className="projects">
+          <div className="projectHeader">
+            <div>
+              <div className="projectName">Travel Planner</div>
+              <div className="projectDesc">
+                A travel planning application that allows users to create and manage their travel itineraries, integrated with live APIs.
+              </div>
             </div>
+            <a href="https://github.com/chemicoholic21/Travel-Planner" target="_blank" rel="noopener noreferrer">
+              <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+            </a>
           </div>
-          <a href="https://github.com/chemicoholic21/Travel-Planner" target="_blank" rel="noopener noreferrer">
-            <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+          <a href="https://github.com/chemicoholic21/Travel-Planner" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <Image className="projectImg" src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&q=80&w=1600" alt="Travel Planner" width={1600} height={900} />
           </a>
         </div>
-        <a href="https://github.com/chemicoholic21/Travel-Planner" target="_blank" rel="noopener noreferrer">
-          <Image className="projectImg" src="/mockup1.png" alt="Book shop" width={800} height={400} />
-        </a>
       </div>
 
       <div className="contact" id="contact" ref={contactRef}>
@@ -419,7 +424,9 @@ GitHub and CI.
         <a className="contactButton" href="mailto:taniyasouza@gmail.com">
           <button>taniyasouza@gmail.com</button>
         </a>
-        <div className="pageLinks"><a href="#">Back to Top</a></div>
+        <div className="pageLinks" style={{ marginTop: '2vw' }}>
+          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Back to Top</a>
+        </div>
       </div>
 
       <div className="footer">
