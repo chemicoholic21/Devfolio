@@ -173,7 +173,7 @@ export default function Home() {
 
       <div className="about">
         <div className="aboutSection" ref={aboutSectionRef}>
-          <Image className="myPic" alt="Taniya Souza" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" width={400} height={400} />
+          <Image className="myPic" alt="Taniya Souza" src="/myPic.png" width={400} height={400} />
           <div className="fieldSection">
             <div>Taniya Souza</div>
             <div className="fieldName">Software engineer</div>
