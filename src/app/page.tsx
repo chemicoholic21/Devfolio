@@ -1,13 +1,15 @@
 'use client';
 
 import Image from "next/image";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   // Section refs for GSAP animations
   const containerRef = useRef<HTMLDivElement>(null);
   const aboutSectionRef = useRef<HTMLDivElement>(null);
@@ -163,11 +165,30 @@ export default function Home() {
     <div className="container" ref={containerRef}>
       <div className="navbar">
         <div className="nameLink">TANIYA SOUZA ©</div>
-        <div className="pageLinks">
+        <div className="pageLinks desktopLinks">
           <a href="#skills">skills</a>
           <a href="#experience">experience</a>
           <a href="#projects">projects</a>
           <a href="#contact">contact</a>
+        </div>
+        <button 
+          className={`mobileMenuBtn ${isMobileMenuOpen ? 'open' : ''}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <div className="menuLine line1"></div>
+          <div className="menuLine line2"></div>
+        </button>
+      </div>
+
+      <div className={`mobileMenuOverlay ${isMobileMenuOpen ? 'isOpen' : ''}`}>
+        <div className="mobileMenuLinks">
+          <a href="#skills" onClick={() => setIsMobileMenuOpen(false)}>Skills</a>
+          <a href="#experience" onClick={() => setIsMobileMenuOpen(false)}>Experience</a>
+          <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
+          <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+        </div>
+        <div className="mobileMenuFooter">
+          <a href="mailto:taniyasouza@gmail.com">taniyasouza@gmail.com</a>
         </div>
       </div>
 
