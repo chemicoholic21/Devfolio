@@ -203,7 +203,7 @@ export default function Home() {
         <div className="nameSection" ref={nameSectionRef}>
           <div className="aboutHeading">ABOUT</div>
           <span>
-            More into logic, systems, and backend than just UI. I build full-stack products using React, TypeScript, and Python, and spend a lot of time working on APIs, data flow, and AI-driven features. Currently building something on Github, you can check it!
+            I'm an AI Product Engineer and builder who loves turning complex models into lightning-fast, user-friendly products. Whether I'm building data pipelines that analyze GitHub at scale or optimizing LLM latency for applications, my focus is bridging the gap between cutting-edge AI and practical reality.
           </span>
         </div>
       </div>
@@ -325,15 +325,19 @@ export default function Home() {
               <div className="aboutHeading">PROJECTS</div>
               <div className="projectName">GitPullTalent</div>
               <div className="projectDesc">
-                A GitHub-based developer ranking and discovery platform. Scores developers on real activity like commits, PRs, and repo quality to surface meaningful signals for recruiters. Built with TypeScript.
+                <ul className="projectDescList">
+                  <li><strong>Goal:</strong> Streamline tech hiring by replacing subjective resumes with quantitative GitHub activity metrics.</li>
+                  <li><strong>Impact:</strong> Engineered a robust ranking system evaluating commit quality, PR frequency, and repo health.</li>
+                  <li><strong>Tech:</strong> TypeScript, Next.js, BullMQ.</li>
+                </ul>
               </div>
             </div>
-            <a href="https://github.com/chemicoholic21/Git-Pull-Talent" target="_blank" rel="noopener noreferrer">
+            <a href="https://gitpulltalent.vercel.app" target="_blank" rel="noopener noreferrer">
               <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
             </a>
           </div>
           <a href="https://gitpulltalent.vercel.app" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
-            <Image className="projectImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600" alt="GitPullTalent" width={1600} height={900} />
+            <Image className="projectImg" src="/gitpulltalent_mockup.png" alt="GitPullTalent" width={1600} height={900} />
           </a>
         </div>
 
@@ -342,7 +346,11 @@ export default function Home() {
             <div>
               <div className="projectName">github-data-pipeline</div>
               <div className="projectDesc">
-                A headless data pipeline that ingests, caches, and analyzes GitHub data, storing structured insights in Postgres and Redis. Built with TypeScript, BullMQ, Drizzle ORM.
+                <ul className="projectDescList">
+                  <li><strong>Goal:</strong> Build a headless data pipeline for processing and analyzing large-scale GitHub repository data.</li>
+                  <li><strong>Impact:</strong> Designed scalable ingestion and caching strategies, handling real-time rate limiting and large payloads.</li>
+                  <li><strong>Tech:</strong> TypeScript, BullMQ, Drizzle ORM, Postgres, Redis.</li>
+                </ul>
               </div>
             </div>
             <a href="https://github.com/chemicoholic21/github-data-pipeline" target="_blank" rel="noopener noreferrer">
@@ -350,7 +358,7 @@ export default function Home() {
             </a>
           </div>
           <a href="https://github.com/chemicoholic21/github-data-pipeline" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
-            <Image className="projectImg" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600" alt="github-data-pipeline" width={1600} height={900} />
+            <Image className="projectImg" src="/github_data_pipeline_mockup.png" alt="github-data-pipeline" width={1600} height={900} />
           </a>
         </div>
 
@@ -359,7 +367,11 @@ export default function Home() {
             <div>
               <div className="projectName">Fitness App</div>
               <div className="projectDesc">
-                Real-time posture/movement monitoring web app using OpenCV. Python backend, React frontend, hosted on AWS.
+                <ul className="projectDescList">
+                  <li><strong>Goal:</strong> Monitor user posture and movements in real-time to provide automated physical feedback.</li>
+                  <li><strong>Impact:</strong> Implemented AI-driven posture detection, integrating seamless communication between the frontend and the AI server.</li>
+                  <li><strong>Tech:</strong> OpenCV, Python, React, AWS.</li>
+                </ul>
               </div>
             </div>
             <a href="#" target="_blank" rel="noopener noreferrer">
@@ -367,7 +379,7 @@ export default function Home() {
             </a>
           </div>
           <a href="#" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
-            <Image className="projectImg" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1600" alt="Fitness App" width={1600} height={900} />
+            <Image className="projectImg" src="/fitness_app_mockup.png" alt="Fitness App" width={1600} height={900} />
           </a>
         </div>
 
@@ -376,7 +388,11 @@ export default function Home() {
             <div>
               <div className="projectName">JournalMind</div>
               <div className="projectDesc">
-                Journaling application built with Next.js, TypeScript, and Tailwind CSS. Seamless user experience and robust design layout leveraging SSR.
+                <ul className="projectDescList">
+                  <li><strong>Goal:</strong> Create a full-stack, aesthetically pleasing progressive web application for journaling.</li>
+                  <li><strong>Impact:</strong> Architected a robust, minimal design system with instantaneous interactions leveraging SSR.</li>
+                  <li><strong>Tech:</strong> Next.js, TypeScript, Tailwind CSS, Supabase.</li>
+                </ul>
               </div>
             </div>
             <a href="https://github.com/tsouza1007/JM" target="_blank" rel="noopener noreferrer">
@@ -384,7 +400,7 @@ export default function Home() {
             </a>
           </div>
           <a href="https://github.com/tsouza1007/JM" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
-            <Image className="projectImg" src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1600" alt="JournalMind" width={1600} height={900} />
+            <Image className="projectImg" src="/journalmind_mockup.png" alt="JournalMind" width={1600} height={900} />
           </a>
         </div>
 
@@ -393,7 +409,11 @@ export default function Home() {
             <div>
               <div className="projectName">Image Processing AI</div>
               <div className="projectDesc">
-                Advanced image processing pipeline using Grounding DINO for object detection, SAM for segmentation, and SD-XL for image generation.
+                <ul className="projectDescList">
+                  <li><strong>Goal:</strong> Automate complex image editing tasks like precise object removal and generative fill.</li>
+                  <li><strong>Impact:</strong> Orchestrated three state-of-the-art vision models to pipeline a localized inpainting system in Python.</li>
+                  <li><strong>Tech:</strong> Grounding DINO, Segment Anything (SAM), Stable Diffusion XL.</li>
+                </ul>
               </div>
             </div>
             <a href="https://colab.research.google.com/drive/1YGKV5TSSjF9UAfWZiulkk8t1GDxN6ysD" target="_blank" rel="noopener noreferrer">
@@ -401,7 +421,7 @@ export default function Home() {
             </a>
           </div>
           <a href="https://colab.research.google.com/drive/1YGKV5TSSjF9UAfWZiulkk8t1GDxN6ysD" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
-            <Image className="projectImg" src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1600" alt="AI PIPELINE" width={1600} height={900} />
+            <Image className="projectImg" src="/image_processing_mockup.png" alt="AI PIPELINE" width={1600} height={900} />
           </a>
         </div>
 
@@ -410,7 +430,11 @@ export default function Home() {
             <div>
               <div className="projectName">Positivus</div>
               <div className="projectDesc">
-                Responsive website with microanimations and smooth transitions, built using ReactJS and Tailwind CSS.
+                <ul className="projectDescList">
+                  <li><strong>Goal:</strong> Develop an award-winning layout for a digital marketing agency interface.</li>
+                  <li><strong>Impact:</strong> Achieved a highly expressive design with buttery smooth micro-interactions that elevate brand perception.</li>
+                  <li><strong>Tech:</strong> ReactJS, Tailwind CSS, GSAP.</li>
+                </ul>
               </div>
             </div>
             <a href="https://github.com/tsouza1007/Hackathon" target="_blank" rel="noopener noreferrer">
@@ -418,7 +442,7 @@ export default function Home() {
             </a>
           </div>
           <a href="https://github.com/tsouza1007/Hackathon" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
-            <Image className="projectImg" src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=1600" alt="Positivus" width={1600} height={900} />
+            <Image className="projectImg" src="/positivus_mockup.png" alt="Positivus" width={1600} height={900} />
           </a>
         </div>
 
@@ -427,7 +451,11 @@ export default function Home() {
             <div>
               <div className="projectName">Travel Planner</div>
               <div className="projectDesc">
-                A travel planning application that allows users to create and manage their travel itineraries, integrated with live APIs.
+                <ul className="projectDescList">
+                  <li><strong>Goal:</strong> Provide a unified hub for tourists to generate, map, and organize smart itineraries dynamically.</li>
+                  <li><strong>Impact:</strong> Integrated live data sources to accurately assemble travel timelines.</li>
+                  <li><strong>Tech:</strong> React, APIs, Maps Integration.</li>
+                </ul>
               </div>
             </div>
             <a href="https://github.com/chemicoholic21/Travel-Planner" target="_blank" rel="noopener noreferrer">
