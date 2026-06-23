@@ -160,6 +160,7 @@ h1, h2, h3, h4 { margin: 0; }
 .mobileMenuOverlay.isOpen .mobileMenuLinks a:nth-child(2) { transition-delay: 0.2s; }
 .mobileMenuOverlay.isOpen .mobileMenuLinks a:nth-child(3) { transition-delay: 0.3s; }
 .mobileMenuOverlay.isOpen .mobileMenuLinks a:nth-child(4) { transition-delay: 0.4s; }
+.mobileMenuOverlay.isOpen .mobileMenuLinks a:nth-child(5) { transition-delay: 0.5s; }
 
 .mobileMenuFooter {
   position: absolute;
@@ -360,6 +361,122 @@ h1, h2, h3, h4 { margin: 0; }
 }
 
 /* PROJECTS SECTION */
+
+/* ACHIEVEMENTS SECTION */
+.achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+}
+
+.achievementsHeading {
+  font-size: 1vw;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--line-color);
+  padding-bottom: 1vw;
+}
+
+.achievementsSubtitle {
+  font-size: 5vw;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.achievementCard {
+  display: flex;
+  gap: 4vw;
+  padding: 4vw 0;
+  border-top: 1px solid var(--line-color);
+  align-items: flex-start;
+}
+
+.achievementNumber {
+  font-size: 5vw;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  min-width: 8vw;
+}
+
+.achievementContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+  flex: 1;
+}
+
+.achievementTitle {
+  font-size: 2.5vw;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.achievementOrg {
+  font-size: 1.4vw;
+  color: var(--text-muted);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.achievementMeta {
+  display: flex;
+  gap: 2vw;
+  align-items: center;
+}
+
+.achievementPrize {
+  font-size: 1vw;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-main);
+  border: 1px solid var(--line-color);
+  padding: 0.5vw 1.5vw;
+  border-radius: 100px;
+  font-weight: 500;
+}
+
+.achievementYear {
+  font-size: 1vw;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.achievementTags {
+  display: flex;
+  gap: 1.5vw;
+  margin-top: 0.5vw;
+}
+
+.achievementTag {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  font-size: 1vw;
+  color: var(--text-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.achievementTag:hover {
+  color: var(--text-main);
+}
+
+.achievementTag svg {
+  width: 1.2vw;
+  height: 1.2vw;
+}
+
+/* PROJECTS SECTION */
 .projects {
   display: flex;
   flex-direction: column;
@@ -537,6 +654,20 @@ h1, h2, h3, h4 { margin: 0; }
   
   .experienceName { font-size: 6.5vw; line-height: 1.3; margin: 0; }
   .experienceDesc { font-size: 5vw; line-height: 1.6; margin: 0; color: var(--text-muted); }
+  
+  .achievementsHeading { font-size: 3vw; }
+  .achievementsSubtitle { font-size: 8vw; }
+  .achievementCard { flex-direction: column; gap: 4vw; padding: 6vw 0; }
+  .achievementNumber { font-size: 8vw; min-width: auto; }
+  .achievementTitle { font-size: 6vw; }
+  .achievementOrg { font-size: 4vw; }
+  .achievementMeta { gap: 4vw; flex-wrap: wrap; }
+  .achievementPrize { font-size: 3.5vw; padding: 2vw 4vw; }
+  .achievementYear { font-size: 3.5vw; }
+  .achievementTags { gap: 4vw; }
+  .achievementTag { font-size: 3.5vw; }
+  .achievementTag svg { width: 4vw; height: 4vw; }
+  
   .projectName { font-size: 8vw; margin-bottom: 4vw;}
   .projectDesc { font-size: 4vw; max-width: 100%; margin-bottom: 6vw;}
   .projectDescList { padding-left: 5vw; gap: 2vw;}
