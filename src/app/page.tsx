@@ -25,6 +25,7 @@ export default function Home() {
   const skillSectionRefs = useMemo(() => [skillSectionRef1, skillSectionRef2, skillSectionRef3], []);
   
   const experienceRef = useRef<HTMLDivElement>(null);
+  const achievementsRef = useRef<HTMLDivElement>(null);
   const projectsContainerRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
@@ -91,6 +92,28 @@ export default function Home() {
             ease: "power4.out",
             scrollTrigger: {
               trigger: experienceRef.current,
+              start: "top 85%",
+              end: "top 40%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Achievements Section Reveal
+      if (achievementsRef.current) {
+        const achievementCards = achievementsRef.current.querySelectorAll('.achievementCard');
+        gsap.fromTo(
+          achievementCards,
+          { opacity: 0, y: 100, clipPath: "inset(100% 0% 0% 0%)" },
+          {
+            opacity: 1,
+            y: 0,
+            clipPath: "inset(0% 0% 0% 0%)",
+            stagger: 0.12,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: achievementsRef.current,
               start: "top 85%",
               end: "top 40%",
               scrub: 1,
@@ -171,6 +194,7 @@ export default function Home() {
         <div className="pageLinks desktopLinks">
           <a href="#skills">skills</a>
           <a href="#experience">experience</a>
+          <a href="#achievements">achievements</a>
           <a href="#projects">projects</a>
           <a href="#contact">contact</a>
         </div>
@@ -187,6 +211,7 @@ export default function Home() {
         <div className="mobileMenuLinks">
           <a href="#skills" onClick={() => setIsMobileMenuOpen(false)}>Skills</a>
           <a href="#experience" onClick={() => setIsMobileMenuOpen(false)}>Experience</a>
+          <a href="#achievements" onClick={() => setIsMobileMenuOpen(false)}>Achievements</a>
           <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
           <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
         </div>
@@ -317,6 +342,116 @@ export default function Home() {
           <div className="experienceName">Frontend / Design technologist</div>
           <div className="experienceDesc">
           Automated insurance policy verification using n8n and DeepOpinion. Built reusable, accessible UI components with React, TypeScript, Tailwind, and Storybook. Delivered a full-stack journaling app with Supabase and enforced coding standards via ESLint/Husky.
+          </div>
+        </div>
+      </div>
+
+      <div className="achievements" id="achievements" ref={achievementsRef}>
+        <div className="achievementsHeading">ACHIEVEMENTS</div>
+        <div className="achievementsSubtitle">Hackathon Wins</div>
+        <div className="achievementCard">
+          <div className="achievementNumber">01</div>
+          <div className="achievementContent">
+            <div className="achievementTitle">Blitz : Sarvam X Monad</div>
+            <div className="achievementOrg">Monad Sarvam</div>
+            <div className="achievementMeta">
+              <span className="achievementPrize">Winner</span>
+              <span className="achievementYear">07.06.2026</span>
+            </div>
+            <div className="achievementTags">
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn Post
+              </a>
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Twitter Post
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="achievementCard">
+          <div className="achievementNumber">02</div>
+          <div className="achievementContent">
+            <div className="achievementTitle">AWS X Elastic's Hacknight : AI Agents</div>
+            <div className="achievementOrg">Elastic AWS</div>
+            <div className="achievementMeta">
+              <span className="achievementPrize">Winner</span>
+              <span className="achievementYear">09.05.2026</span>
+            </div>
+            <div className="achievementTags">
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn Post
+              </a>
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Twitter Post
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="achievementCard">
+          <div className="achievementNumber">03</div>
+          <div className="achievementContent">
+            <div className="achievementTitle">CodeSprint 2.0</div>
+            <div className="achievementOrg">Nitte Meenakshi Institute of Technology, Yelahanka</div>
+            <div className="achievementMeta">
+              <span className="achievementPrize">Winner</span>
+              <span className="achievementYear">02.05.2024</span>
+            </div>
+            <div className="achievementTags">
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn Post
+              </a>
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Twitter Post
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="achievementCard">
+          <div className="achievementNumber">04</div>
+          <div className="achievementContent">
+            <div className="achievementTitle">amBITion 24hr National Level Hackathon</div>
+            <div className="achievementOrg">Bangalore Institute of Technology</div>
+            <div className="achievementMeta">
+              <span className="achievementPrize">2nd Runners-up</span>
+              <span className="achievementYear">07.07.2024</span>
+            </div>
+            <div className="achievementTags">
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn Post
+              </a>
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Twitter Post
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="achievementCard">
+          <div className="achievementNumber">05</div>
+          <div className="achievementContent">
+            <div className="achievementTitle">National Social Hackathon 2024</div>
+            <div className="achievementOrg">CMR Institute of Technology</div>
+            <div className="achievementMeta">
+              <span className="achievementPrize">2nd Runners-up</span>
+              <span className="achievementYear">31.05.2024</span>
+            </div>
+            <div className="achievementTags">
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn Post
+              </a>
+              <a className="achievementTag" href="#" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Twitter Post
+              </a>
+            </div>
           </div>
         </div>
       </div>
