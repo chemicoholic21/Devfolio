@@ -1,8 +1,8 @@
-# Taniya Souza — Portfolio
+# Taniya Souza
 
 A personal portfolio website for showcasing projects, work experience, skills, and achievements. Built with **Next.js 16**, **React 19**, and **TypeScript**, featuring scroll-driven animations and interactive WebGL effects.
 
-🔗 **Live:** [taniyasouza.github.io/devfolio](https://taniyasouza.github.io/devfolio/)
+🔗 **Live:** [taniyasouza.vercel.app](https://taniyasouza.vercel.app)
 
 ## Features
 
