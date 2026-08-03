@@ -441,6 +441,27 @@ export default function Home() {
           <div className="projectHeader">
             <div>
               <div className="aboutHeading">PROJECTS</div>
+              <div className="projectName">Proof of Synergy</div>
+              <div className="projectDesc">
+                <ul className="projectDescList">
+                  <li><strong>Goal:</strong> Build an AI communication gym where users rehearse real conversations with adaptive AI partners in their own language.</li>
+                  <li><strong>Impact:</strong> Combined speech, conversation, and memory so growth is captured in a persistent Skill Knowledge Graph that remembers across sessions.</li>
+                  <li><strong>Tech:</strong> Sarvam, Gemini, Cognee, Next.js.</li>
+                </ul>
+              </div>
+            </div>
+            <a href="https://pos-eight-omega.vercel.app/" target="_blank" rel="noopener noreferrer">
+              <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
+            </a>
+          </div>
+          <a href="https://github.com/chemicoholic21/Proof-Of-Synergy" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <Image className="projectImg" src="/proof_of_synergy_mockup.png" alt="Proof of Synergy" width={1600} height={900} />
+          </a>
+        </div>
+
+        <div className="projects">
+          <div className="projectHeader">
+            <div>
               <div className="projectName">GitPullTalent</div>
               <div className="projectDesc">
                 <ul className="projectDescList">
