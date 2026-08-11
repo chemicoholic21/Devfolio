@@ -116,7 +116,7 @@ h1, h2, h3, h4 { margin: 0; }
   width: 100vw;
   height: 100vh;
   background-color: var(--bg-color);
-  z-index: 99;
+  z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -477,6 +477,17 @@ h1, h2, h3, h4 { margin: 0; }
 }
 
 /* PROJECTS SECTION */
+.projectsHeading {
+  font-size: 1vw;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--line-color);
+  padding-bottom: 1vw;
+  margin-bottom: 0;
+}
+
 .projects {
   display: flex;
   flex-direction: column;
@@ -489,11 +500,6 @@ h1, h2, h3, h4 { margin: 0; }
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-}
-
-.projectHeader .aboutHeading {
-  border-bottom: none;
-  padding-bottom: 0;
 }
 
 .projectName {
@@ -582,9 +588,6 @@ h1, h2, h3, h4 { margin: 0; }
 
 .contactButton {
   text-decoration: none;
-}
-
-.contactButton button {
   background: none;
   border: none;
   color: var(--text-main);
@@ -596,7 +599,7 @@ h1, h2, h3, h4 { margin: 0; }
   padding-bottom: 0.5vw;
 }
 
-.contactButton button::after {
+.contactButton::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -656,6 +659,7 @@ h1, h2, h3, h4 { margin: 0; }
   .experienceDesc { font-size: 5vw; line-height: 1.6; margin: 0; color: var(--text-muted); }
   
   .achievementsHeading { font-size: 3vw; }
+  .projectsHeading { font-size: 3vw; }
   .achievementsSubtitle { font-size: 8vw; }
   .achievementCard { flex-direction: column; gap: 4vw; padding: 6vw 0; }
   .achievementNumber { font-size: 8vw; min-width: auto; }
