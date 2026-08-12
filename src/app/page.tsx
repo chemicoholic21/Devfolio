@@ -437,10 +437,10 @@ export default function Home() {
       </div>
 
       <div id="projects" ref={projectsContainerRef} style={{ display: 'flex', flexDirection: 'column', gap: '6vw' }}>
+        <div className="projectsHeading">PROJECTS</div>
         <div className="projects">
           <div className="projectHeader">
             <div>
-              <div className="aboutHeading">PROJECTS</div>
               <div className="projectName">Proof of Synergy</div>
               <div className="projectDesc">
                 <ul className="projectDescList">
@@ -513,11 +513,11 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/chemicoholic21" target="_blank" rel="noopener noreferrer">
               <Image className="projectLink" src="/linkArrow.png" alt="link" width={52} height={52} />
             </a>
           </div>
-          <a href="#" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
+          <a href="https://github.com/chemicoholic21" target="_blank" rel="noopener noreferrer" style={{ overflow: 'hidden', borderRadius: '24px' }}>
             <Image className="projectImg" src="/fitness_app_mockup.png" alt="Fitness App" width={1600} height={900} />
           </a>
         </div>
@@ -610,7 +610,7 @@ export default function Home() {
       <div className="contact" id="contact" ref={contactRef}>
         <BlurText text="Let's get started." className="contactName" animateBy="words" delay={100} />
         <a className="contactButton" href="mailto:taniyasouza@gmail.com">
-          <button>taniyasouza@gmail.com</button>
+          taniyasouza@gmail.com
         </a>
         <div className="pageLinks" style={{ marginTop: '2vw' }}>
           <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Back to Top</a>
