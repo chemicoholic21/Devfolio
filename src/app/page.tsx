@@ -286,21 +286,6 @@ export default function Home() {
       <div className="experience" id="experience" ref={experienceRef}>
         <div className="experienceheading">EXPERIENCE</div>
         <div className="companyBox">
-          <div className="companyName">AI Foundations</div>
-          <div className="companyPeriod">March 2026 – Present</div>
-          <div className="companySkills">
-            <div className="companySkillName">TypeScript</div>
-            <div className="companySkillName">Performance</div>
-            <div className="companySkillName">API Integration</div>
-          </div>
-        </div>
-        <div className="experienceItem">
-          <div className="experienceName">Frontend Engineer (TypeScript, Performance & API Integration)</div>
-          <div className="experienceDesc">
-          Building GitPullTalent: a GitHub-based developer ranking and discovery platform. Designed a scoring system evaluating developers on commits, pull requests, and repo quality for recruiter-focused signals. Handled large-scale data ingestion, ranking logic, and profile prioritization heuristics.
-          </div>
-        </div>
-        <div className="companyBox">
           <div className="companyName">Indhic AI</div>
           <div className="companyPeriod">Jan 2026 – Feb 2026</div>
           <div className="companySkills">
