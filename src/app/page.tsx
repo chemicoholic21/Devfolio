@@ -231,7 +231,7 @@ export default function Home() {
         <div className="nameSection" ref={nameSectionRef}>
           <BlurText text="ABOUT" className="aboutHeading" delay={150} animateBy="letters" />
           <span>
-            I'm an AI Product Engineer and builder who loves turning complex models into lightning-fast, user-friendly products. Whether I'm building data pipelines that analyze GitHub at scale or optimizing LLM latency for applications, my focus is bridging the gap between cutting-edge AI and practical reality.
+            I'm an AI Product Engineer and builder who loves turning complex models into lightning-fast, user-friendly products. Whether I'm building data pipelines that analyze GitHub at scale or optimizing LLM latency for applications, my focus is bridging the gap between cutting-edge AI and practical reality. Fun fact: I once debugged an issue for 3 hours only to discover it was a missing semicolon. We don't talk about that.
           </span>
         </div>
       </div>
@@ -245,7 +245,7 @@ export default function Home() {
 
       <div className="skills" id="skills">
         <div className="skillSection" id="front" ref={skillSectionRefs[0]}>
-          <div className="skillHeader">Frontend.</div>
+          <div className="skillHeader">Frontend. <span style={{fontSize: '0.6em', opacity: 0.6}}>(aka making pixels behave)</span></div>
           <div className="skillNameSection">
             <div className="skillName">ReactJS</div>
             <div className="skillName">HTML & CSS</div>
@@ -254,10 +254,11 @@ export default function Home() {
             <div className="skillName">Tailwind CSS</div>
             <div className="skillName">Storybook</div>
             <div className="skillName">Figma</div>
+            <div className="skillName">Stack Overflow</div>
           </div>
         </div>
         <div className="skillSection" id="back" ref={skillSectionRefs[1]}>
-          <div className="skillHeader">Backend.</div>
+          <div className="skillHeader">Backend. <span style={{fontSize: '0.6em', opacity: 0.6}}>(where the real magic happens)</span></div>
           <div className="skillNameSection">
             <div className="skillName">NodeJS</div>
             <div className="skillName">ExpressJS</div>
@@ -272,13 +273,14 @@ export default function Home() {
           </div>
         </div>
         <div className="skillSection" id="lang" ref={skillSectionRefs[2]}>
-          <div className="skillHeader">Languages & Tools.</div>
+          <div className="skillHeader">Languages & Tools. <span style={{fontSize: '0.6em', opacity: 0.6}}>(my comfort zone)</span></div>
           <div className="skillNameSection">
             <div className="skillName">Python</div>
             <div className="skillName">Next.js</div>
             <div className="skillName">SQL</div>
             <div className="skillName">Linux</div>
             <div className="skillName">ESLint/Husky</div>
+            <div className="skillName">Coffee (the language)</div>
           </div>
         </div>
       </div>
@@ -594,6 +596,7 @@ export default function Home() {
 
       <div className="contact" id="contact" ref={contactRef}>
         <BlurText text="Let's get started." className="contactName" animateBy="words" delay={100} />
+        <p style={{opacity: 0.7, fontSize: '0.9rem', marginBottom: '1rem'}}>Warning: I respond faster than my code compiles</p>
         <a className="contactButton" href="mailto:taniyasouza@gmail.com">
           taniyasouza@gmail.com
         </a>
@@ -604,7 +607,7 @@ export default function Home() {
 
       <div className="footer">
         <div className="nameLink">Taniya Souza.</div>
-        <div className="footerRight">all rights reserved © 2026</div>
+        <div className="footerRight">all rights reserved © 2026 | built with ☕ and questionable CSS choices</div>
       </div>
     </div>
   );
