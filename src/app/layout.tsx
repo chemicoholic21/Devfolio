@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Taniya Souza - Portfolio",
+  title: "Taniya Souza - Portfolio | Professional Bug Creator",
   description:
-    "This is a portfolio of my work, including both personal and production projects.",
+    "This is a portfolio of my work, including both personal and production projects. No semicolons were harmed in the making of this website.",
   openGraph: {
     title: "Taniya Souza - Portfolio",
     description:
