@@ -607,7 +607,7 @@ export default function Home() {
 
       <div className="footer">
         <div className="nameLink">Taniya Souza.</div>
-        <div className="footerRight">all rights reserved © 2026 | built with ☕ and questionable CSS choices</div>
+        <div className="footerRight">all rights reserved © 2026</div>
       </div>
     </div>
   );
